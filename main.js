@@ -8,6 +8,12 @@ then
   git config user.name "$INPUT_GIT_AUTHOR_NAME"
 fi
 
+if ! test -f .gitignore
+then
+  echo "Missing .gitignore file. Please create one and include .$INPUT_BRANCH/ in it"
+  exit 1
+fi
+
 if ! grep -Fxq ".$INPUT_BRANCH/" .gitignore
 then
   echo "Please make sure .$INPUT_BRANCH/ is present in .gitignore"
